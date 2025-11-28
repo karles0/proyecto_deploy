@@ -1,0 +1,94 @@
+import type { Book, User, PageResponse } from "../types";
+const API_URL = import.meta.env.VITE_API_URL || "https://proyecto-backend-proyectdbp-production.up.railway.app";
+
+export const searchBooks = async (
+  query: string,
+  page: number = 0,
+  size: number = 20
+): Promise<PageResponse<Book>> => {
+  if (!query.trim()) {
+    return {
+      content: [],
+      totalElements: 0,
+      totalPages: 0,
+      size,
+      number: page,
+      first: true,
+      last: true,
+      empty: true
+    };
+  }
+
+  try {
+    const res = await fetch(
+      `${API_URL}/libro/search?query=${encodeURIComponent(query)}&page=${page}&size=${size}`
+    );
+
+    if (!res.ok) {
+      throw new Error("Error al buscar libros");
+    }
+
+    const data = await res.json();
+    return data as PageResponse<Book>;
+  } catch (error) {
+    console.error("Error en searchBooks:", error);
+    return {
+      content: [],
+      totalElements: 0,
+      totalPages: 0,
+      size,
+      number: page,
+      first: true,
+      last: true,
+      empty: true
+    };
+  }
+};
+
+export async function searchUsers(query: string): Promise<User[]> {
+  const res = await fetch(`${API_URL}/api/usuarios/search?query=${encodeURIComponent(query)}`);
+  if (!res.ok) return [];
+  return res.json();
+}
+
+export const getAllGeneros = async (): Promise<string[]> => {
+  try {
+    const res = await fetch(`${API_URL}/libro/generos`);
+    if (!res.ok) throw new Error("Error al obtener géneros");
+    return await res.json();
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};
+
+export const getBooksByGenero = async (
+  genero: string,
+  page: number = 0,
+  size: number = 20
+): Promise<PageResponse<Book>> => {
+  try {
+    const res = await fetch(
+      `${API_URL}/libro/genero/${encodeURIComponent(genero)}?page=${page}&size=${size}`
+    );
+
+    if (!res.ok) {
+      throw new Error("Error al consultar libros por género");
+    }
+
+    const data = await res.json();
+    return data as PageResponse<Book>;
+  } catch (err) {
+    console.error(err);
+    return {
+      content: [],
+      totalElements: 0,
+      totalPages: 0,
+      size,
+      number: page,
+      first: page === 0,
+      last: true,
+      empty: true
+    };
+  }
+};
