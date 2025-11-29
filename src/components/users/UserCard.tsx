@@ -14,7 +14,7 @@ export default function UserCard({ user }: UserCardProps) {
     if (user.profilePicture.startsWith('http')) {
       return user.profilePicture;
     }
-    return `http://localhost:8080${user.profilePicture}`;
+    return `https://proyecto-backend-proyectdbp-production.up.railway.app${user.profilePicture}`;
   };
 
   return (

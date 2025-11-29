@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Lista, CreateListaDTO, UpdateListaDTO, ListaLibrosDTO } from '../types';
+import type { ListaLibrosSimpleDTO, CreateListaDto, UpdateListaDto, ListaLibrosDTO } from '../types';
 
 const API_URL = import.meta.env.VITE_API_URL || 'https://proyecto-backend-proyectdbp-production.up.railway.app';
 
@@ -14,8 +14,9 @@ const getAuthHeaders = () => {
 export const listaService = {
   /**
    * ✅ Obtener todas las listas del usuario actual (sin libros completos)
+   * Retorna ListaLibrosSimpleDTO[] con bookIds
    */
-  async getMyLists(): Promise<Lista[]> {
+  async getMyLists(): Promise<ListaLibrosSimpleDTO[]> {
     const response = await axios.get(`${API_URL}/api/lista/my-lists`, {
       headers: getAuthHeaders(),
     });
@@ -34,8 +35,9 @@ export const listaService = {
 
   /**
    * ✅ Crear nueva lista
+   * Retorna ListaLibrosSimpleDTO con bookIds
    */
-  async createLista(data: CreateListaDTO): Promise<Lista> {
+  async createLista(data: CreateListaDto): Promise<ListaLibrosSimpleDTO> {
     const response = await axios.post(`${API_URL}/api/lista`, data, {
       headers: getAuthHeaders(),
     });
@@ -44,8 +46,9 @@ export const listaService = {
 
   /**
    * ✅ Actualizar lista (nombre y/o descripción)
+   * Retorna ListaLibrosSimpleDTO con bookIds
    */
-  async updateLista(id: number, data: UpdateListaDTO): Promise<Lista> {
+  async updateLista(id: number, data: UpdateListaDto): Promise<ListaLibrosSimpleDTO> {
     const response = await axios.put(`${API_URL}/api/lista/${id}`, data, {
       headers: getAuthHeaders(),
     });

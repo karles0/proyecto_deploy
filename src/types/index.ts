@@ -474,15 +474,7 @@ export interface ProfileResponse {
   totalLists: number;
 }
 
-export type NotificacionTipo = 
-  | 'NUEVO_SEGUIDOR'
-  | 'NUEVO_LIKE_REVIEW'
-  | 'NUEVO_COMENTARIO_REVIEW'
-  | 'NUEVO_LIKE_COMENTARIO'
-  | 'NUEVA_RESPUESTA_COMENTARIO'
-  | 'NUEVA_REVIEW_LIBRO'
-  | 'MENCION'
-  | 'SISTEMA';
+
 
 
 export interface ListaSimple {
@@ -551,4 +543,8 @@ export interface NotificacionDTO {
   usuarioOrigen?: UsuarioOrigenDTO;
   entidadId?: number;
   tipoEntidad?: string;
+}
+
+export interface NotificationCountResponse {
+  noLeidas: number;
 }
