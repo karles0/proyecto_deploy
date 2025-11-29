@@ -10,7 +10,7 @@ interface EditProfileModalProps {
   onSuccess: () => void;
 }
 
-export default function EditProfileModal({ user, onClose, onSuccess }: EditProfileModalProps) {
+export default function EditProfileModal({ user, onClose }: EditProfileModalProps) {
   const { refreshUser } = useAuth();
   
   const [formData, setFormData] = useState({

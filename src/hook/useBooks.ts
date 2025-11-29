@@ -10,7 +10,7 @@ export function useBooks() {
   const [newBooks, setNewBooks] = useState<Book[]>([]);
   const [topBooks, setTopBooks] = useState<Book[]>([]);
   const [recommendedBooks, setRecommendedBooks] = useState<Book[]>([]);
-  const [popularReviews, setPopularReviews] = useState<any[]>([]); // Mantén tu tipo de Review
+  const [popularReviews] = useState<any[]>([]); // Mantén tu tipo de Review
 
   useEffect(() => {
     loadAllData();

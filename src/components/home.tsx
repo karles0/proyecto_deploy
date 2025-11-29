@@ -3,7 +3,7 @@ import BookSection from "../components/books/BookSection";
 import BookGrid from "../components/books/BookGrid";
 import ReviewCard from "../components/reviews/ReviewCard";
 import SearchBar from "../components/books/SearchBar";
-import { Loader2, TrendingUp, Clock, Star, Sparkles } from "lucide-react";
+import { Loader2,  Clock, Star, Sparkles } from "lucide-react";
 
 export default function Home() {
   const {

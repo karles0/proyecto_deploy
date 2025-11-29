@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Users, Loader2 } from 'lucide-react';
 import UserCard from '../components/users/UserCard';
 import UserSearchBar from '../components/users/UserSearchBar';
@@ -7,7 +6,6 @@ import { userService } from '../Service/userService';
 import type { UserSearchResult } from '../types';
 
 export default function MembersPage() {
-  const navigate = useNavigate();
   const [users, setUsers] = useState<UserSearchResult[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
