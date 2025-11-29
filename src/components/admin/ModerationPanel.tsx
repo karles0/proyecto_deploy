@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, ExternalLink, Trash2, Eye } from 'lucide-react';
+import { Search,  Trash2, Eye } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../Service/api';
 
